@@ -1,14 +1,10 @@
 package com.org.springstudy;
 
-import com.org.springstudy.repository.JdbcMemberRepository;
-import com.org.springstudy.repository.MemberRepository;
-import com.org.springstudy.repository.MemoryMemberRepository;
+import com.org.springstudy.repository.*;
 import com.org.springstudy.service.MemeberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
-import javax.sql.DataSource;
 
 /*
 자바 코드로 직접 스프링 빈 등록하기
@@ -26,20 +22,37 @@ spring-boot-starter-jdbc 를 추가하면 Spring Boot에서는 DataSource 관리
 
 DataSource 의 설정은 application.properties 파일내에서 spring.datasource.* 와 같은 패턴으로 설정이 가능
  */
-    private DataSource dataSource;
 
+    //jpa
+//    private EntityManager em;
+//    @Autowired
+//    public SpringConfig(EntityManager em){
+//        this.em= em;
+//    }
+    //private DataSource dataSource;
+    //@Autowired
+    //public SpringConfig(DataSource dataSource){
+    //    this.dataSource=dataSource;
+    //}
+
+    private final MemberRepository memberRepository;
     @Autowired
-    public SpringConfig(DataSource dataSource){
-        this.dataSource=dataSource;
+    public SpringConfig(MemberRepository memberRepository) {
+        this.memberRepository = memberRepository;
     }
+
+
     @Bean
     public MemeberService memeberService(){
 
-        return new MemeberService(memberRepository());
+        return new MemeberService(memberRepository);
     }
-    @Bean
-    public MemberRepository memberRepository(){
+//    @Bean
+//    public MemberRepository memberRepository(){
+//      return new MemoryMemberRepository();
+//        return new JdbcMemberRepository(dataSource);
+//        return new JdbcTemplateRepository(dataSource);
+//        return new JpaMemberRepository(em);
 
-        return new JdbcMemberRepository(dataSource);
-    }
+//    }
 }

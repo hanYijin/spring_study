@@ -6,11 +6,18 @@ import com.org.springstudy.repository.MemoryMemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
 
 //@Service
+/*
+Spring 에서 JPA 기술을 쓸 때 빼놓을 수 없는 기능중 하나는 @Transactional 이다
+transaction begin, commit을 자동 수행해준다.
+예외를 발생시키면, rollback 처리를 자동 수행해준다.
+ */
+@Transactional
 public class MemeberService {
 
     private final MemberRepository memberRepository;

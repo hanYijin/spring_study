@@ -8,6 +8,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.Commit;
 import org.springframework.transaction.annotation.Transactional;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -28,6 +29,7 @@ class MemeberServiceIntegrationTest {
     MemberRepository memberRepository;
 
     @Test
+    //@Commit // DB에 commit 적용되는 애노테이션
     void 회원가입() {
         //given(주어진 데이터)
         Member member = new Member();
@@ -38,6 +40,9 @@ class MemeberServiceIntegrationTest {
         Member findMember= memeberService.findOne(saveId).get();
         assertThat(member.getName()).isEqualTo(findMember.getName());
     }
+    //Hibernate: select member0_.id as id1_0_, member0_.name as name2_0_ from member member0_ where member0_.name=?
+    //Hibernate: insert into member (name) values (?)
+    //Hibernate: ORM 프레임워크 Open Source SW
     @Test
     public void 중복_회원_예외(){
         //given
