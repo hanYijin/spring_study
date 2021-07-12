@@ -1,0 +1,105 @@
+<script type="text/javascript">
+	function doView(idx){
+		
+		location.href="/freeboard/view?idx="+idx;
+	}
+</script> 
+
+
+<div class="card-body" style="clear: both">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>No</th>
+                                            <th>제목</th>
+                                            <th>작성자</th>
+                                            <th>이메일</th>
+                                            <th>날짜</th>
+                                            <th>조회</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    <c:forEach items="${list}" var="index">
+                                    		<%-- index= <br>
+                                    		${index}<br> --%>
+                                    <tr style="cursor:pointer;"onclick="doView(${index.idx})">
+                                            	<td>${index.idx}</td>
+                                            	<td>${index.title}</td>
+                                            	<td>${index.name}</td>
+                                            	<td>${index.email}</td>
+                                            	<td>${index.wdate}</td>
+                                            	<td>${index.see}</td>
+                                            </tr>
+                                    	</c:forEach>
+                                            
+               
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+
+controller
+@RequestMapping(value = "/freeboard/view")
+	public String freeboardview(Model model, Board board,int idx) {
+		System.out.println("idx= "+idx);
+		Board boardone = sst.selectOne("freeboard.view", idx);
+    	model.addAttribute("view",boardone);
+		return "freeboard/view";
+}
+
+/*
+	 * @RequestMapping(value = "/freeboard/view") public String freeboardview(Model
+	 * model, Board board,int idx) { System.out.println("idx= "+idx);
+	 * model.addAttribute("view",bs.selectone(board.getIdx())); return
+	 * "freeboard/view"; }
+	 */
+
+수정하기
+controller
+	@RequestMapping(value = "/freeboard/updateform", method = RequestMethod.GET)
+	public String freeboardupdateform(Model model,int idx) {
+		
+		System.out.println("idx= "+idx);
+		Board board = sst.selectOne("freeboard.view", idx);
+		model.addAttribute("board", board);
+		//bs.insert();
+		
+		return "freeboard/freeboardupdate";
+	}
+updateform.jsp
+스프링 MVC에서 제공하는 커스텀 태그 <form:form>
+자세한 내용은 spring 교재 p.287
+ 
+폼 태그를 사용하기 위해 taglib 디렉티브 설정
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+
+//modelAttribute는 커맨드 객체의 속성 이름을 지정.
+<div class="card-body" style="clear: both">
+                            <div class="table-responsive">
+                                <form:form name="form" id="form" role="form" method="post" action="/freeboard/update" modelAttribute="board">
+                                    <form:hidden path="idx"/>
+                                    <form:hidden path="pass"/>                                    
+                                    <div class="mb-3">
+                                        <label for="title">제목</label>
+                                        <form:input path="title" type="text" class="form-control" name="title" id="title" />
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="name">작성자</label>
+                                        <form:input path="name" type="text" class="form-control" name="name" id="name"/>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="email">이메일</label>
+                                        <form:input path="email" type="text" class="form-control" name="email" id="email"/>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="content">내용</label>
+                                        <form:textarea class="form-control" path="content" rows="5" name="content" id="content"/>
+                                    </div>
+                                    <div class="mb-3">
+                                        <input class="btn btn-primary" type="submit" value="수정"/>
+                                    </div>
+                                </form:form>
+                            </div>
+                        </div>
