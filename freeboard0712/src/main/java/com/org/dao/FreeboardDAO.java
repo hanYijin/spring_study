@@ -13,6 +13,7 @@ public class FreeboardDAO implements BoardDAO{
 	
 	@Override
 	public void write(Freeboardvo fboardvo) throws Exception{
+		sqlSession.insert("freeboardMapper.insert",fboardvo);
 		
 	}
 	@Override

@@ -26,4 +26,9 @@
     <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate" destroy-method="clearCache">
         <constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory"></constructor-arg>
     </bean>
+    
+    <!-- scan -->
+    <context:component-scan base-package="com.org.service"></context:component-scan>
+    <context:component-scan base-package="com.org.dao"></context:component-scan>
+    <context:component-scan base-package="com.org.vo"></context:component-scan>
 </beans>
