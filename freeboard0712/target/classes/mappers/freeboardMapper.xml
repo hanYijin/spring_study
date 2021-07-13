@@ -3,6 +3,9 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="freeboardMapper">
-
+<select id="selectlist" resultType="com.org.vo.Freeboardvo">
+	select idx,title,pass,content wdate,name,email 
+	From freeboard order by idx desc
+</select>
    
 </mapper>
