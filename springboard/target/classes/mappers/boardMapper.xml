@@ -3,5 +3,30 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="boardMapper">
-   
+   <!-- 게시판 글 작성 -->
+   <insert id="insert" parameterType="com.org.yj.vo.Board">
+   		insert into board(title, content, userid, redate, available) 
+   		values (#{title},#{content},#{userid},now(),1)
+   </insert>
+   <select id="select_list" resultType="com.org.yj.vo.Board">
+   		select bno, title,userid,redate 
+   		from board 
+   		order by bno desc
+   </select>
+   <select id="read" parameterType="int" resultType="com.org.yj.vo.Board">
+   		select bno, title, content, userid, redate
+   		from board
+   		where bno = #{bno}
+   </select>
+   <update id="update" parameterType="com.org.yj.vo.Board">
+   		update board
+   		set title = #{title},
+   			content = #{content},
+   			redate = now()
+   		where bno = #{bno} 
+   </update>
+   <delete id="delete" parameterType="int">
+   		delete from board
+   		where bno = #{bno}
+   </delete>
 </mapper>

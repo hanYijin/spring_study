@@ -1,4 +1,4 @@
-package com.org.yj;
+package com.org.yj.controller;
 
 import java.text.DateFormat;
 import java.util.Date;

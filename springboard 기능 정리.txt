@@ -1,0 +1,36 @@
+controller 
+- 웹에서 처리해야할 데이터를 받고, 
+- 데이터를 담당할 service를 선택하여 호출,
+- 처리한 데이터를 다음 페이지에서 볼 수 있도록 셋팅, 이동 페이지를 반환
+
+service
+- 데이터를 dao를 통해 넘겨주거나 받으면서 비즈니스 로직을 수행하는 역활
+
+dao
+- DB를 통해 데이터를 죄회하거나 수정, 삭제하는 역활
+
+vo
+- DB에 있는 테이블 칼럽 값을 객채로 다루기 위해 사용
+
+로그 관리
+log4j framework 활용
+파일 src/main/resource /META-INF/
+log4j~.properties
+로그기록을 어디에, 출력문구는 뭐? 인지에 대한 설정
+
+활용 하기 위한 자바 코드
+import org.slf4j.Logger;
+private static final Logger logger = LoggerFactory.getLogger(로그기록적용클래스.class);
+
+<select id="select_list" resultType="com.org.yj.vo.Board">
+order by bno desc 번호를 기준으로 내림차순으로 조회 (최근에 작성한 글 부터 조회)
+- resultType: 쿼리를 실행하고난 결과값을 Board에 담아줌
+
+list.jsp
+<c:forEach items="${list}" var = "list">
+BoardController에서 service.list()를 가져온것을 이름을 list로 정한 model에서  담아 
+데이터 ${list} 값 만큼 반복
+- var는 ${list}를 list라는 이름으로 선언
+-<c:out value="${list.bno}" />은 데이터를 가져옴
+>>> forEach와 c:out를 쓰려면 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+>>>fmt날짜 포맷을 써주려면 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
