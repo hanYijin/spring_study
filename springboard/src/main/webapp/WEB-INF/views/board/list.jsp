@@ -15,19 +15,7 @@
 </head>
 <body>
 	<header>
-  		<nav class="navbar navbar-expand-sm bg-light navbar-light">
-  			<ul class="navbar-nav">
-  				<li class="nav-item">
-      				<a class="nav-link" href="<c:url value="/"/>">HOME</a>
-    			</li>
-    			<li class="nav-item active">
-      				<a class="nav-link" href='<c:url value="/board/list"/>'>게시판</a>
-    			</li>
-    			<li class="nav-item active">
-      				<a class="nav-link" href='<c:url value="../Member/login"/>'>회원관리</a>
-    			</li>
-    		</ul>
-    	</nav>
+  		<%@include file="navbar.jsp" %>
     </header>
     <div class="container">
   		<h1>게시판</h1>
@@ -46,12 +34,12 @@
   			</thead>
   			<tbody>
   			<c:forEach items="${list}" var = "list">
-  			<fmt:parseDate value='${list.redate}' var='redate' pattern='yyyymmdd'/>
+  			<%-- <fmt:parseDate value='${list.redate}' var='redate' pattern='yyyymmdd'/> --%>
   				<tr>
-  					<td><c:out value="${list.bno}"/></td>
+  					<td><a href="/board/readView?bno=${list.bno}"><c:out value="${list.bno}"/></a></td>
   					<td><a href="/board/readView?bno=${list.bno}"><c:out value= "${list.title}"/></a></td>
-  					<td><c:out value= "${list.userid}"/></td>
-  					<td><fmt:formatDate value="${redate}" pattern="yyyy-MM-dd"/></td>
+  					<td><c:out value= "${list.userid}"/></td> 
+  					<td><%-- <fmt:formatDate value="${redate}" pattern="yyyy-MM-dd"/> --%><c:out value="${list.redate}"/></td>
   				</tr>
   			</c:forEach>
   			</tbody>

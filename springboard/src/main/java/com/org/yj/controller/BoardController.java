@@ -51,19 +51,20 @@ public class BoardController {
 		return "board/readView";
 	}
 	//게시글 수정 작성
-	@RequestMapping(value="/updateView")
+	@RequestMapping(value="/updateView",method = RequestMethod.GET)
 	public String updateView(Board board, Model model) throws Exception{
 		logger.info("updateView");
-		model.addAttribute("read", bservice.read(board.getBno()));
+		model.addAttribute("update", bservice.read(board.getBno()));
 		return "board/updateView";
 	}
 	//게시글 수정
 	@RequestMapping(value="/update", method = RequestMethod.POST)
 	public String update(Board board) throws Exception{
 		logger.info("update");
-		
+
+		//model.addAttribute("read", bservice.read(board.getBno()));
 		bservice.update(board);
-		return "redirect:/board/list";
+		return "redirect:/board/list";//
 	}
 	//게시글 삭제
 	@RequestMapping(value="/delete")//, method = RequestMethod.POST

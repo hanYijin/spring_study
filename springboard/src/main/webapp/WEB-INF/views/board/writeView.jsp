@@ -12,16 +12,7 @@
 </head>
 <body>
 	<header>
-  		<nav class="navbar navbar-expand-sm bg-light navbar-light">
-  			<ul class="navbar-nav">
-  				<li class="nav-item">
-      				<a class="nav-link" href="../home.jsp">HOME</a>
-    			</li>
-    			<li class="nav-item active">
-      				<a class="nav-link" href="board.jsp">게시판</a>
-    			</li>
-    		</ul>
-    	</nav>
+  		<%@include file="navbar.jsp" %>
     </header>
     <div class="container">
   		<h1>게시판</h1>
@@ -46,7 +37,7 @@
 					</tr>
 					<tr>
 						<td>
-							<textarea type="text" class="form-control" placeholder="내용" id="content" name="content" maxlegth="1000" style="height:350px;">내용 </textarea>
+							<textarea type="text" class="form-control" placeholder="내용" id="content" name="content" maxlegth="1000" style="height:350px;"></textarea>
 						</td>
 					</tr>
 					<tr>

@@ -28,21 +28,25 @@
 		var formObj = $("form[name='readForm']");
 		
 		// 수정 
-		$(".update_btn").on("click", function(){
+		$("#update_btn").on("click", function(){
+			
 			formObj.attr("action", "/board/updateView");
 			formObj.attr("method", "get");
 			formObj.submit();				
 		})
 		
 		// 삭제
-		$(".delete_btn").on("click", function(){
+		$("#delete_btn").on("click", function(){
+			var deleteYN = confirm("삭제하시겠습니까?");
+			if(deleteYN == true){
 			formObj.attr("action", "/board/delete");
 			formObj.attr("method", "post");
 			formObj.submit();
+			}
 		})
 		
 		// 취소
-		$(".list_btn").on("click", function(){
+		$("#list_btn").on("click", function(){
 			
 			location.href = "/board/list";
 		})
@@ -60,16 +64,7 @@
 </script>
 <body>
 	<header>
-  		<nav class="navbar navbar-expand-sm bg-light navbar-light">
-  			<ul class="navbar-nav">
-  				<li class="nav-item">
-      				<a class="nav-link" href="<c:url value="/"/>">HOME</a>
-    			</li>
-    			<li class="nav-item active">
-      				<a class="nav-link" href='<c:url value="/board/list"/>'>게시판</a>
-    			</li>
-    		</ul>
-    	</nav>
+  		<%@include file="navbar.jsp" %>
     </header>
     <div class="container">
   		<h1>게시판</h1>
@@ -86,7 +81,7 @@
 				</thead>
 				<tbody>
 				<%-- <c:forEach items="${read}" var="read"> --%>
-				<fmt:parseDate value='${read.redate}' var='redate' pattern='yyyymmdd'/>
+				<%-- <fmt:parseDate value='${read.redate}' var='redate' pattern='yyyymmdd'/> --%>
 					<tr>
 						<td Style="width:20%;">글 제목</td>
 					    <td colspan="2">${read.title}</td>
@@ -97,7 +92,7 @@
 					</tr>
 					<tr>
 						<td Style="width:20%;">작성일자</td>
-					    <td colspan="2"><fmt:formatDate value="${redate}" pattern="yyyy-MM-dd"/></td>
+					    <td colspan="2">${read.redate}<%-- <fmt:formatDate value="${redate}" pattern="yyyy-MM-dd"/> --%></td>
 					</tr>
 					<tr>
 						<td Style="width:20%;">내용</td>
@@ -106,10 +101,9 @@
 				</tbody>
   		</table>
   		<div>
-  			<a href='<c:url value='/board/updateView'/>' role='button' class="btn btn-warning">수정</a>
-  			<a href='<c:url value='/board/delete'/>' role='button' class="btn btn-danger">삭제</a>
-  			<button type="submit" class="delete_btn">삭제</button>
-			<a href='<c:url value='/board/list'/>' role='button' class="btn btn-primary">목록</a>
+  			<button type="submit" id="update_btn" class="btn btn-warning">수정</button>
+  			<button type="submit" id="delete_btn" class="btn btn-danger">삭제</button>
+			<button type="submit" id="list_btn" class="btn btn-primary">목록</button>
   		</div>
   		
 </body>

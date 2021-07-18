@@ -16,14 +16,22 @@
 	<resources mapping="/resources/**" location="/resources/" />
 	<!-- Root Context: defines shared resources visible to all other web components -->
 	<!-- mysql 접속 -->
-    
     <beans:bean id="ds"
+		class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+		<beans:property name="driverClassName"
+			value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy"></beans:property>
+		<beans:property name="url"
+			value="jdbc:log4jdbc:mysql://localhost:3305/mybatis_db?allowPublicKeyRetrieval=true&amp;useSSL=false&amp;serverTimezone=UTC"></beans:property>
+		<beans:property name="username" value="mybatis"></beans:property>
+		<beans:property name="password" value="1234"></beans:property>
+	</beans:bean>
+   <!--  <beans:bean id="ds"
         class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <beans:property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
         <beans:property name="url" value="jdbc:mysql://localhost:3305/mybatis_db?useSSL=false&amp;serverTimezone=UTC"/>
         <beans:property name="username" value="mybatis"/>
         <beans:property name="password" value="1234"/>
-    </beans:bean>
+    </beans:bean> -->
     <!-- mybatis 연동 -->
 	<beans:bean id="ssf" class="org.mybatis.spring.SqlSessionFactoryBean">
          <beans:property name="dataSource" ref="ds"/>

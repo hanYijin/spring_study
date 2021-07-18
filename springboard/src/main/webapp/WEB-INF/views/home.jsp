@@ -16,7 +16,7 @@
       				<a class="nav-link" href="<c:url value="/"/>">HOME</a>
     			</li>
     			<li class="nav-item active">
-      				<a class="nav-link" href='<c:url value="/board/list"/>'>게시판</a>
+      				<a class="nav-link" href='<c:url value="/board/list"/>'>My Farm Stroy</a>
     			</li>
     			<li class="nav-item active">
       				<a class="nav-link" href='<c:url value="../Member/login"/>'>회원관리</a>
