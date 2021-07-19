@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="freeboardMapper">
+<insert id="insert">
+		INSERT INTO freeboard
+		(TITLE, PASS, CONTENT, WDATE, NAME, EMAIL)
+		VALUES (#{title},#{name},#{content}, now(),#{name},#{email});
+</insert>
+<select id="selectlist" resultType="com.org.vo.Freeboardvo">
+	SELECT * FROM FREEBOARD
+	order by idx desc
+</select>
+   
+</mapper>

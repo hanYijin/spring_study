@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="boardMapper">
+	<insert id="insert" parameterType="kr.co.yj.vo.Board">
+   		insert into board(title, content, userid, redate, available) 
+   		values (#{title},#{content},#{userid},now(),1)
+   </insert>
+   <select id="select_list" resultType="kr.co.yj.vo.Board">
+   		select bno, title,userid,redate 
+   		from board 
+   		order by bno desc
+   </select>
+   <select id="read" parameterType="int" resultType="kr.co.yj.vo.Board">
+   		select bno, title, content, userid, redate
+   		from board
+   		where bno = #{bno}
+   </select>
+   <update id="update" parameterType="kr.co.yj.vo.Board">
+   		update board
+   		set title = #{title},
+   			content = #{content},
+   			redate = now()
+   		where bno = #{bno} 
+   </update>
+   <delete id="delete" parameterType="int">
+   		delete from board
+   		where bno = #{bno}
+   </delete> 
+</mapper>
