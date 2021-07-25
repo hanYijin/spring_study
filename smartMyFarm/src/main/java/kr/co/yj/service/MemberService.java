@@ -22,7 +22,10 @@ public class MemberService {
 	//수정
 	public void memberUpdate(Member member) throws Exception {
 		mdao.memberUpdate(member);
-		
+	}
+	//삭제
+	public void memberDelete(Member member) throws Exception {
+		mdao.memberDelete(member);
 	}
 
 }

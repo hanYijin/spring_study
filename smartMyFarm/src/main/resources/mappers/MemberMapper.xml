@@ -19,4 +19,9 @@
 		pw = #{pw}, name=#{name}, phone=#{phone},address=#{address}
 		Where id=#{id}
 	</update>
+<!-- 회원 탈퇴 -->
+	<delete id="memberDelete">
+		Delete From member
+		Where id = #{id} And pw =#{pw}
+	</delete>
 </mapper>

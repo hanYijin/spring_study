@@ -30,9 +30,7 @@
     	</nav>
 <!-- 로그인 양식 -->
 <div class="container">
-<h1>
-	Smart MyFarm  
-</h1>
+<img alt="" src="/resources/img/smartmyfarm.png" width="1110px"/>
 <script type="text/javascript">
 	$(document).ready(function(){
 		$("#logoutBtn").on("click", function(){
@@ -48,7 +46,7 @@
 </script>
 <form name='homeForm' method="post" action="/Member/login">
 		<c:if test="${member == null}">
-			<div class="form-inline" style="float: right;">
+			<div class="form-inline mt-3" style="float: right;">
 				<label for="id">아이디</label>
 				<input type="text" id="id" name="id">
 				<label for="pw">비밀번호</label>
@@ -68,6 +66,52 @@
 			<p style="color: red;">로그인 실패! 아이디와 비밀번호 확인해주세요.</p>
 		</c:if>
 	</form>
+</div>
+<div class="container mt-5">
+<h3>새소식</h3>
+<div id="accordion">
+  <div class="card">
+    <div class="card-header">
+      <a class="card-link" data-toggle="collapse" href="#collapseOne">
+        ‘토마토’ 항산화 물질 높이는 재배 기술 주목
+      </a>
+    </div>
+    <div id="collapseOne" class="collapse show" data-parent="#accordion">
+      <div class="card-body">
+        	<p>농촌진흥청(청장 허태웅)은 고추의 항산화 물질을 늘리기 위해 개발한 액비(물비료) 재배 기술을 토마토에 적용했을 때도 우수한 효과가 있음을 확인했다고 밝혔다.</p>
+      		<img alt="" src="/resources/img/toto.png" />
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <a class="collapsed card-link" data-toggle="collapse" href="#collapseTwo">
+        	폭염 등 기상재해 예방‧복구 위해 현장 영농기술 지원 강화
+      </a>
+    </div>
+    <div id="collapseTwo" class="collapse" data-parent="#accordion">
+      <div class="card-body">
+        <p>농촌진흥청(청장 허태웅)은 장마가 끝나고 서쪽지방을 중심으로 체감온도가 35도 이상으로 오르는 등 본격적인 폭염이 시작됨에 따라 농작물, 가축, 농업인 안전 등 폭염 피해 최소화를 위한 기술지원을 강화하기로 했다.</p>
+      	<img alt="" src="/resources/img/hotsummer.jpg" />
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <a class="collapsed card-link" data-toggle="collapse" href="#collapseThree">
+        Collapsible Group Item #3
+      </a>
+    </div>
+    <div id="collapseThree" class="collapse" data-parent="#accordion">
+      <div class="card-body">
+        Lorem ipsum..
+      </div>
+    </div>
+  </div>
+
+</div>
 </div>
 </body>
 </html>

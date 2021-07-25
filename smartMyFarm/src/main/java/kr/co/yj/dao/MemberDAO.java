@@ -23,5 +23,8 @@ public class MemberDAO {
 	public void memberUpdate(Member member) throws Exception{
 		sqlSession.update("memberMapper.memberUpdate", member);
 	}
-
+	//삭제
+	public void memberDelete(Member member)throws Exception{
+		sqlSession.delete("memberMapper.memberDelete",member);
+	}
 }

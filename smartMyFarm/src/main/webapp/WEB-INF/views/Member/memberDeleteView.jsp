@@ -64,10 +64,10 @@ body {
 <div class="jumbotron ">
 	<div class="jumbotron" align="center">
 		<header>
-			<p class="display-1">회원정보 수정</p>
+			<p class="display-1">회원탈퇴</p>
 		</header>
 
-		<form action="/Member/memberUpdate" method="post" class='col-5'>
+		<form action="/Member/memberDelete" method="post" class='col-5'>
 			<div class="form-group">
 					<label class="float-left mt-2" for="id">아이디:</label>
 					<input class="form-control" type="text" id="id" name="id" value="${member.id}" readonly="readonly"/>
@@ -80,27 +80,14 @@ body {
 				<label for="pwd" class="float-left mt-2">비밀번호:</label>
 				 <input type="password" class="form-control mt-2" id="pw" name="pw" placeholder="비밀번호를 입력하세요."/>
 			</div>
-			<div>
-				<label for="chpwd" class="float-left mt-2">비밀번호 확인:</label> <input
-					type="password" class="form-control mt-2" id="pw2"
-					placeholder="비밀번호를  재입력하세요."/>
-				<div id="pw_check"></div>
-			</div>
-			<div class="form-group">
-				<label for="phone" class="float-left mt-2">전화번호:</label> <input
-					type="text" class="form-control mt-2" id="phone" name="phone"
-					value="${member.phone}"/>
-			</div>
-			<div class="form-group">
-				<label for="address" class="float-left mt-2">주소:</label> <input
-					type="text" class="form-control mt-2" id="address" name="address"
-					value="${member.address}"/>
-			</div>
 			<div class="form-group">
 				<button type="button" class="btn btn-danger mt-3 col-3 float-left" id="cancel">취소</button>
-				<button type="submit" class="btn btn-success mt-3 col-3 float-right" id="OK">회원정보 수정</button>
+				<button type="submit" class="btn btn-success mt-3 col-3 float-right" id="OK">회원탈퇴</button>
 			</div>
 		</form>
+		<div>
+			<c:if test="${msg == false}">비밀번호가 맞지 않습니다.</c:if>
+		</div>
 	</div>
 </div>
 	<footer align="center"><p>Copyright ⓒ By MOHW. All Rights Reserved.</p></footer>
@@ -108,21 +95,8 @@ body {
 <script type="text/javascript">
 $(document).ready(function(){	
 	$('#OK').click(function() {
-		if (${member.id}.val() == $('#pw').val()) {
-			swal("실패!", "아이디와 비밀번호가 동일합니다.", "error");
-			return false;
-		}
-
 		if ($('#pw').val() == "") {
 			swal("실패!", "비밀번호를 입력하세요!", "error");
-			return false;
-		}
-		if ($('#pw2').val() == "") {
-			swal("실패!", "비밀번호를 입력하세요!", "error");
-			return false;
-		}
-		if ($('#pw').val() != $('#pw2').val()) {
-			swal("실패!", "비밀번호가 일치하지 않습니다.", "error");
 			return false;
 		}
 	});
