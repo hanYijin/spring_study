@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import kr.co.yj.vo.Board;
+import kr.co.yj.vo.Criteria;
+import kr.co.yj.vo.SearchCriteria;
 //DB를 통해 데이터를 게시판 작성, 조회, 수정, 삭제하는 역활
 @Repository
 public class BoardDAO {
@@ -18,8 +20,12 @@ public class BoardDAO {
 		sqlSession.insert("boardMapper.insert",board);
 	}
 	//게시판 목록 조회
-	public List<Board> selectList() throws Exception{
-		return sqlSession.selectList("boardMapper.select_list");
+	public List<Board> selectList(SearchCriteria scri ) throws Exception{
+		return sqlSession.selectList("boardMapper.select_list",scri);
+	}
+	//게시물 총 갯수
+	public int listCount(SearchCriteria scri)throws Exception{
+		return sqlSession.selectOne("boardMapper.listCount",scri);
 	}
 	//게시물 조회
 	public Board read(int bno) throws Exception{
